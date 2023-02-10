@@ -10,28 +10,30 @@ import java.util.ArrayList;
  * Admission Number: 2212562
  * Name: Chen Lexuan
  */
-public class RentalSystem{
+public class RentalSystem {
 
     private RentalReadWriteFromFile RW = new RentalReadWriteFromFile();
     private ArrayList<Comic> comicsList = new ArrayList<Comic>();
     private ArrayList<Rentee> rentees = new ArrayList<Rentee>();
 
     //RentalSystem
-    //Making the arraylist of comics and rentees and even admins
+    //Making the arraylist of comics and rentees
     public RentalSystem() {
         RW.readComic(comicsList);
         RW.readRentee(rentees);
     }
 
-    public Comic DisplayComics(int index) {
+    //returns the comic when user clicks next or return button
+    public Comic getComics(int index) {
         return comicsList.get(index);
     }
 
-    public Rentee DisplayRentees(int index) {
+    //returns the rentee when user clicks next or return button
+    public Rentee gerRentees(int index) {
         return rentees.get(index);
     }
 
-    //SearchComics
+    //SearchComics with ISBN
     public Comic SearchComics(String ISBNInput) {
         Comic foundComic = null;
         for (int i = 0; i < comicsList.size(); i++) {
@@ -42,7 +44,7 @@ public class RentalSystem{
         return foundComic;
     }
 
-    //SearchRentees
+    //SearchRentees with member ID
     public Rentee SearchRentees(String MemberID) {
         Rentee foundRentee = null;
         for (int i = 0; i < rentees.size(); i++) {
@@ -53,6 +55,7 @@ public class RentalSystem{
         return foundRentee;
     }
 
+    //method that returns the index when user clicks search button
     public int getComicIndex(String ISBNInput) {
         int index = 0;
         for (int i = 0; i < comicsList.size(); i++) {
@@ -63,6 +66,7 @@ public class RentalSystem{
         return index;
     }
 
+    //method that returns the index when user clicks search button
     public int getRenteeIndex(String MemberID) {
         int index = 0;
         for (int i = 0; i < rentees.size(); i++) {
@@ -73,20 +77,22 @@ public class RentalSystem{
         return index;
     }
 
+    //method that returns the size of the comics
     public int getComicSize() {
         return comicsList.size();
     }
     
-    public Rentee[] getRentees(){
+    //method that returns the size of the rentees
+    public int getRenteeSize() {
+        return rentees.size();
+    }
+    
+    public Rentee[] saveRentees() {
         Rentee[] renteeSave = new Rentee[rentees.size()];
-        for(int i =0; i < rentees.size(); i++){
+        for (int i = 0; i < rentees.size(); i++) {
             renteeSave[i] = rentees.get(i);
         }
         return renteeSave;
-    }
-    
-    public int getRenteeSize() {
-        return rentees.size();
     }
 
     //PrintEarningStatistics

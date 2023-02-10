@@ -13,7 +13,6 @@ import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class ComicRentalFrame extends javax.swing.JFrame {
 
     /**
@@ -459,12 +458,12 @@ public class ComicRentalFrame extends javax.swing.JFrame {
                         .addComponent(btnSaveExit, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(102, 102, 102))))
             .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(305, 305, 305)
+                        .addGap(291, 291, 291)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
                         .addComponent(lblComic, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(196, 196, 196)
                         .addComponent(lblRentee, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -498,12 +497,12 @@ public class ComicRentalFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        // TODO add your handling code here:
+        //Clears text area
         txtAreaMsg.setText("");
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnComicNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComicNextActionPerformed
-        // TODO add your handling code here:
+        //Gets next comic, if comic index is more than comic size, show message and revert increment of comic index
         try {
             ComicIndex += 1;
             if (ComicIndex >= RS.getComicSize()) {
@@ -525,7 +524,7 @@ public class ComicRentalFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnComicNextActionPerformed
 
     private void btnComicPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComicPreviousActionPerformed
-        // TODO add your handling code here:
+        // gets comic but throws message when index is less than 0
         try {
             ComicIndex -= 1;
             if (ComicIndex < 0) {
@@ -547,7 +546,7 @@ public class ComicRentalFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnComicPreviousActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
+        // search either comic or rentee
         if (rbComic.isSelected()) {
             Comic comic = RS.SearchComics(txtSearch.getText());
             if (comic != null) {
@@ -634,8 +633,8 @@ public class ComicRentalFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         double Rental = 0;
         for (int i = 0; i < RS.getRenteeSize(); i++) {
-            for (int y = 0; y < RS.DisplayRentees(i).getComicsLoaned().length; y++) {
-                Comic comicsLoaned = RS.SearchComics(RS.DisplayRentees(i).getComicsLoaned()[y]);
+            for (int y = 0; y < RS.gerRentees(i).getComicsLoaned().length; y++) {
+                Comic comicsLoaned = RS.SearchComics(RS.gerRentees(i).getComicsLoaned()[y]);
                 Rental += comicsLoaned.RentalFeePD();
             }
         }
@@ -644,28 +643,34 @@ public class ComicRentalFrame extends javax.swing.JFrame {
 
     private void btnSaveExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveExitActionPerformed
         // TODO add your handling code here:
-        RW.writeFile(RS.getRentees());
-        JOptionPane.showMessageDialog(null, "Saving data...");
-        JOptionPane.showMessageDialog(null, "Thank you for using Comic Rental"
+        RW.writeFile(RS.saveRentees());
+        JOptionPane.showMessageDialog(
+                null,
+                "Saving data...");
+        JOptionPane.showMessageDialog(
+                null,
+                "Thank you for using Comic Rental"
                 + "\nWe look forward to serve you in the near future");
         close();
     }//GEN-LAST:event_btnSaveExitActionPerformed
 
     public void ComicResult(int index) {
-        txtISBN.setText(RS.DisplayComics(index).getISBN13Number());
-        txtTitle.setText(RS.DisplayComics(index).getTitleName());
-        txtRental.setText("$" + String.format("%.2f", RS.DisplayComics(index).RentalFeePD()));
-        txtDeposit.setText("$" + String.format("%.2f", RS.DisplayComics(index).DepositFee()));
-        txtAreaInfo.setText(RS.DisplayComics(index).AddInfo());
+        //a method to display the comic with the index
+        txtISBN.setText(RS.getComics(index).getISBN13Number());
+        txtTitle.setText(RS.getComics(index).getTitleName());
+        txtRental.setText("$" + String.format("%.2f", RS.getComics(index).RentalFeePD()));
+        txtDeposit.setText("$" + String.format("%.2f", RS.getComics(index).DepositFee()));
+        txtAreaInfo.setText(RS.getComics(index).AddInfo());
         lblComic.setText("Comic " + (index + 1) + " of " + RS.getComicSize());
     }
 
     public void RenteeResult(int index) {
-        txtMemberID.setText(RS.DisplayRentees(index).getMemberID());
-        txtName.setText(RS.DisplayRentees(index).getName());
+        //a method to display the rentee and comics it loaned with the index
+        txtMemberID.setText(RS.gerRentees(index).getMemberID());
+        txtName.setText(RS.gerRentees(index).getName());
         dtm.setRowCount(0);
-        for (int i = 0; i < RS.DisplayRentees(index).getComicsLoaned().length; i++) {
-            Comic comicsLoaned = RS.SearchComics(RS.DisplayRentees(index).getComicsLoaned()[i]);
+        for (int i = 0; i < RS.gerRentees(index).getComicsLoaned().length; i++) {
+            Comic comicsLoaned = RS.SearchComics(RS.gerRentees(index).getComicsLoaned()[i]);
             String ISBN = comicsLoaned.getISBN13Number();
             String Title = comicsLoaned.getTitleName();
             String Rental = "$" + String.format("%.2f", comicsLoaned.RentalFeePD());
@@ -675,13 +680,13 @@ public class ComicRentalFrame extends javax.swing.JFrame {
         }
         lblRentee.setText("Rentee " + (index + 1) + " of " + RS.getRenteeSize());
     }
-    
-    public void close(){
+
+    public void close() {
+        //Method to close the JFrame window itself
         WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
     }
 
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

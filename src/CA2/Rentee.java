@@ -38,14 +38,6 @@ public class Rentee implements Serializable{
         return comicIDloaned;
     }
     
-//    public double getTotalRental(){
-//        double totalRent = 0.00;
-//        for(int i = 0; i < this.comicLoaned.length; i++){
-//            totalRent += RS.SearchComics(comicLoaned[i]).RentalFeePD();
-//        }
-//        return totalRent;
-//    }
-    
     //set methods
     public void setMemberID(String MemberID) {
         this.MemberID = MemberID;
