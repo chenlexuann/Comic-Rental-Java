@@ -4,9 +4,9 @@
  */
 package CA2;
 
-/**
- *
- * @author chenl
+/* Class: DIT/FT/1B/02
+ * Admission Number: 2212562
+ * Name: Chen Lexuan
  */
 import java.io.Serializable;
 public class Comic implements Serializable {

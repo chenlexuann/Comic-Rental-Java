@@ -6,9 +6,10 @@ package CA2;
 
 import java.io.Serializable;
 
-/**
- *
- * @author chenl
+
+/* Class: DIT/FT/1B/02
+ * Admission Number: 2212562
+ * Name: Chen Lexuan
  */
 public class Manga extends Comic implements Serializable {
     private String Language;

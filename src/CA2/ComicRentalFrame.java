@@ -4,15 +4,16 @@
  */
 package CA2;
 
+/* Class: DIT/FT/1B/02
+ * Admission Number: 2212562
+ * Name: Chen Lexuan
+ */
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author chenl
- */
+
 public class ComicRentalFrame extends javax.swing.JFrame {
 
     /**
@@ -679,9 +680,8 @@ public class ComicRentalFrame extends javax.swing.JFrame {
         WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
     }
-    /**
-     * @param args the command line arguments
-     */
+
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
