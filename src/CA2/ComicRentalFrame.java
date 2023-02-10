@@ -572,11 +572,19 @@ public class ComicRentalFrame extends javax.swing.JFrame {
     private void btnRenteePreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenteePreviousActionPerformed
         // TODO add your handling code here:
         try {
-            RenteeIndex -= 1;  //need edit
-            RenteeResult(RenteeIndex);
+            RenteeIndex -= 1;
+            if (RenteeIndex < 0) {
+                RenteeIndex += 1;
+                JOptionPane.showMessageDialog(null,
+                        "Reached minimum Rentee!!!",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                RenteeResult(RenteeIndex);
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
-                    "Reached minimum Rentee!!!",
+                    "Error!!!",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
@@ -585,11 +593,19 @@ public class ComicRentalFrame extends javax.swing.JFrame {
     private void btnRenteeNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenteeNextActionPerformed
         // TODO add your handling code here:
         try {
-            RenteeIndex += 1;  //need edit
-            RenteeResult(RenteeIndex);
+            RenteeIndex += 1;
+            if (RenteeIndex >= RS.getRenteeSize()) {
+                RenteeIndex -= 1;
+                JOptionPane.showMessageDialog(null,
+                        "Reached maximum Rentee!!!",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                RenteeResult(RenteeIndex);
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
-                    "Reached maximum Rentee!!!",
+                    "Error!!!",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
@@ -610,6 +626,10 @@ public class ComicRentalFrame extends javax.swing.JFrame {
     private void btnSaveExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveExitActionPerformed
         // TODO add your handling code here:
         RW.writeFile(RS.getRentees());
+        JOptionPane.showMessageDialog(null, "Saving data...");
+        JOptionPane.showMessageDialog(null, "Thank you for using Comic Rental"
+                + "\nWe look forward to serve you in the near future");
+        new ComicRentalFrame().setVisible(false);
     }//GEN-LAST:event_btnSaveExitActionPerformed
 
     public void ComicResult(int index) {
