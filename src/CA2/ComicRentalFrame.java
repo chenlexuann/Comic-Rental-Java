@@ -502,19 +502,11 @@ public class ComicRentalFrame extends javax.swing.JFrame {
     private void btnComicNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComicNextActionPerformed
         // TODO add your handling code here:
         try {
-            ComicIndex += 1;
-            if (ComicIndex >= RS.getComicSize()) {
-                ComicIndex -= 1;
-                JOptionPane.showMessageDialog(null,
-                        "Reached maximum Comic!!!",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            } else {
-                ComicResult(ComicIndex);
-            }
+            ComicIndex += 1;  //need edit
+            ComicResult(ComicIndex);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
-                    "Error!!!",
+                    "Reached maximum comic!!!",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
@@ -525,15 +517,7 @@ public class ComicRentalFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             ComicIndex -= 1;
-            if (ComicIndex < 0) {
-                ComicIndex += 1;
-                JOptionPane.showMessageDialog(null,
-                        "Reached minimum Comic!!!",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            } else {
-                ComicResult(ComicIndex);
-            }
+            ComicResult(ComicIndex);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
                     "Reached minimum comic!!!",
@@ -645,6 +629,7 @@ public class ComicRentalFrame extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Saving data...");
         JOptionPane.showMessageDialog(null, "Thank you for using Comic Rental"
                 + "\nWe look forward to serve you in the near future");
+        new ComicRentalFrame().setVisible(false);
     }//GEN-LAST:event_btnSaveExitActionPerformed
 
     public void ComicResult(int index) {
