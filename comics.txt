@@ -1,0 +1,6 @@
+978-0785199618;Spider-Man: Miles Morales;112;14.39;Comic;EN
+978-0785190219;Ms. Marvel: No Normal;120;15.99;Comic;EN
+978-0785198956;Secret Wars;312;34.99;Comic;EN
+978-0785156598;Infinity Gauntlet;256;24.99;Comic;EN
+978-1421539898;Naruto Vol. 1;600;23.01;Manga;EN
+978-4091400017;Doremon;191;12.88;Manga;JP

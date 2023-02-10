@@ -4,16 +4,13 @@
  */
 package CA2;
 
-import java.io.Serializable;
-import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 import java.util.ArrayList;
 
 /* Class: DIT/FT/1B/02
  * Admission Number: 2212562
  * Name: Chen Lexuan
  */
-public class RentalSystem implements Serializable {
+public class RentalSystem{
 
     private RentalReadWriteFromFile RW = new RentalReadWriteFromFile();
     private ArrayList<Comic> comicsList = new ArrayList<Comic>();
@@ -79,7 +76,15 @@ public class RentalSystem implements Serializable {
     public int getComicSize() {
         return comicsList.size();
     }
-
+    
+    public Rentee[] getRentees(){
+        Rentee[] renteeSave = new Rentee[rentees.size()];
+        for(int i =0; i < rentees.size(); i++){
+            renteeSave[i] = rentees.get(i);
+        }
+        return renteeSave;
+    }
+    
     public int getRenteeSize() {
         return rentees.size();
     }

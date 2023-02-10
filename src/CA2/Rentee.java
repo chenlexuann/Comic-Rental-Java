@@ -4,11 +4,13 @@
  */
 package CA2;
 
+import java.io.Serializable;
+
 /* Class: DIT/FT/1B/02
  * Admission Number: 2212562
  * Name: Chen Lexuan
  */
-public class Rentee {
+public class Rentee implements Serializable{
     private String MemberID;
     private String Name;
     private String[] comicLoaned;//Must have an array to store comic

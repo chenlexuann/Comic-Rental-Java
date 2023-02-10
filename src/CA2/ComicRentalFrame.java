@@ -609,7 +609,7 @@ public class ComicRentalFrame extends javax.swing.JFrame {
 
     private void btnSaveExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveExitActionPerformed
         // TODO add your handling code here:
-        RW.writeFile(RS.);
+        RW.writeFile(RS.getRentees());
     }//GEN-LAST:event_btnSaveExitActionPerformed
 
     public void ComicResult(int index) {

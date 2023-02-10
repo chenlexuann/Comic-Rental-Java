@@ -65,7 +65,7 @@ public class RentalReadWriteFromFile {
 
     }
     
-    public void writeFile(Rentee rentees){
+    public void writeFile(Rentee[] rentees){
         try {
             ObjectOutputStream outStream = new ObjectOutputStream(
                     new FileOutputStream("rentees.dat")
