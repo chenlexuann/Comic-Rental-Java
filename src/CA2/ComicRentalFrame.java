@@ -4,6 +4,8 @@
  */
 package CA2;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -645,6 +647,7 @@ public class ComicRentalFrame extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Saving data...");
         JOptionPane.showMessageDialog(null, "Thank you for using Comic Rental"
                 + "\nWe look forward to serve you in the near future");
+        close();
     }//GEN-LAST:event_btnSaveExitActionPerformed
 
     public void ComicResult(int index) {
@@ -671,7 +674,11 @@ public class ComicRentalFrame extends javax.swing.JFrame {
         }
         lblRentee.setText("Rentee " + (index + 1) + " of " + RS.getRenteeSize());
     }
-
+    
+    public void close(){
+        WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
+    }
     /**
      * @param args the command line arguments
      */
