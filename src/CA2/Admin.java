@@ -4,10 +4,9 @@
  */
 package CA2;
 
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
 import java.io.*;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,12 +21,18 @@ public class Admin extends javax.swing.JFrame {
     private ArrayList<Comic> comicsList = new ArrayList<Comic>();
     private ArrayList<Rentee> rentees = new ArrayList<Rentee>();
     private RentalSystem RS = new RentalSystem();
+    DefaultListModel comicsLoanList;
 
     public Admin() {
         initComponents();
         comicsList = RS.getComicsList();
         rentees = RS.getRentees();
         comboLanguage.setEnabled(false);
+        comicsLoanList = new DefaultListModel();
+        for (int i = 0; i < comicsList.size(); i++) {
+            comicsLoanList.addElement(comicsList.get(i).getTitleName());
+        }
+        comicsLoan.setModel(comicsLoanList);
     }
 
     /**
@@ -58,11 +63,11 @@ public class Admin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblMemberID = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
-        txtISBN1 = new javax.swing.JTextField();
-        txtTitle1 = new javax.swing.JTextField();
+        txtMemberID = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         btnNewRentee = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        comicsLoan = new javax.swing.JList<>();
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -195,10 +200,10 @@ public class Admin extends javax.swing.JFrame {
         lblName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblName.setText("Name:");
 
-        txtISBN1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtMemberID.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        txtTitle1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtTitle1.setToolTipText("");
+        txtName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtName.setToolTipText("");
 
         btnNewRentee.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNewRentee.setText("Submit");
@@ -208,12 +213,12 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        comicsLoan.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(comicsLoan);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -223,37 +228,34 @@ public class Admin extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                                .addComponent(btnNewRentee))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(txtTitle1)))
-                        .addGap(39, 39, 39))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblMemberID, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtISBN1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addComponent(txtMemberID, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnNewRentee))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(txtName))
+                    .addComponent(jScrollPane1))
+                .addGap(39, 39, 39))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtISBN1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMemberID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMemberID))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnNewRentee, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(btnNewRentee)
                 .addGap(30, 30, 30))
         );
 
@@ -366,6 +368,35 @@ public class Admin extends javax.swing.JFrame {
 
     private void btnNewRenteeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewRenteeActionPerformed
         // TODO add your handling code here:
+        try {
+            String memberID = txtMemberID.getText();
+            String name = txtName.getText();
+            String[] comicLoaned = null;
+            String saveLoaned = null;
+            if (comicsLoan.getSelectedIndex() == -1) {
+                JOptionPane.showMessageDialog(null, "No data selected", "error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                int[] selectedComicIndex = comicsLoan.getSelectedIndices();
+                comicLoaned = new String[selectedComicIndex.length];
+                for (int i = 0; i < selectedComicIndex.length; i++) {
+                    comicLoaned[i] = RS.getComicISBNwithIndex(selectedComicIndex[i]);
+                }
+                Rentee rentee = new Rentee(memberID, name, comicLoaned);
+                rentees.add(rentee);
+                 saveLoaned = comicLoaned[0];
+                for(int y = 1; y < comicLoaned.length; y++){
+                    saveLoaned += "#" + comicLoaned[y];
+                }
+                PrintWriter pw = new PrintWriter(new FileWriter("rentees.txt", true));
+                pw.println(memberID + ";" + name + ";" + saveLoaned);
+                pw.close();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Error!!!",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnNewRenteeActionPerformed
 
     /**
@@ -409,12 +440,12 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton btnNewRentee;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> comboLanguage;
+    private javax.swing.JList<String> comicsLoan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
@@ -424,10 +455,10 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbComic;
     private javax.swing.JRadioButton rbManga;
     private javax.swing.JTextField txtISBN;
-    private javax.swing.JTextField txtISBN1;
+    private javax.swing.JTextField txtMemberID;
+    private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPages;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtTitle;
-    private javax.swing.JTextField txtTitle1;
     // End of variables declaration//GEN-END:variables
 }
