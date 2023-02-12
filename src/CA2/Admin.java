@@ -240,7 +240,7 @@ public class Admin extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMemberID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMemberID))
@@ -248,9 +248,9 @@ public class Admin extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNewRentee)
                 .addGap(20, 20, 20))
         );
@@ -270,17 +270,17 @@ public class Admin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(25, 25, 25)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(48, 48, 48)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(394, 394, 394)
-                            .addComponent(jLabel1))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(394, 394, 394)
+                        .addComponent(jLabel1)))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -290,11 +290,12 @@ public class Admin extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -322,13 +323,13 @@ public class Admin extends javax.swing.JFrame {
                     comicsList.add(manga);
                     RS.setComicsList(comicsList);
                 }
-                JOptionPane.showMessageDialog(null, "Successfully Added!");
-
                 //Saves data into file
                 PrintWriter pw = new PrintWriter(new FileWriter("comics.txt", true));
                 pw.println(ISBN + ";" + title + ";"
                         + pages + ";" + cost + ";" + Type + ";" + Language);
                 pw.close();
+                JOptionPane.showMessageDialog(null,
+                        "Comic Added!");
             } else {
                 JOptionPane.showMessageDialog(null,
                         "ISBN-13 already exist!!!",
@@ -369,24 +370,34 @@ public class Admin extends javax.swing.JFrame {
             String name = txtName.getText();
             String[] comicLoaned = null;
             String saveLoaned = null;
-            if (comicsLoan.getSelectedIndex() == -1) {
-                JOptionPane.showMessageDialog(null, "No data selected", "error", JOptionPane.ERROR_MESSAGE);
+            if (RS.checkMemberID(memberID)) {
+                if (comicsLoan.getSelectedIndex() == -1) {
+                    JOptionPane.showMessageDialog(null, "No data selected", "error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    int[] selectedComicIndex = comicsLoan.getSelectedIndices();
+                    comicLoaned = new String[selectedComicIndex.length];
+                    for (int i = 0; i < selectedComicIndex.length; i++) {
+                        comicLoaned[i] = RS.getComicISBNwithIndex(selectedComicIndex[i]);
+                    }
+                    Rentee rentee = new Rentee(memberID, name, comicLoaned);
+                    rentees.add(rentee);
+                    saveLoaned = comicLoaned[0];
+                    for (int y = 1; y < comicLoaned.length; y++) {
+                        saveLoaned += "#" + comicLoaned[y];
+                    }
+                    PrintWriter pw = new PrintWriter(new FileWriter("rentees.txt", true));
+                    pw.println(memberID + ";" + name + ";" + saveLoaned);
+                    pw.close();
+                    JOptionPane.showMessageDialog(null,
+                            "Member Added!");
+                }
             } else {
-                int[] selectedComicIndex = comicsLoan.getSelectedIndices();
-                comicLoaned = new String[selectedComicIndex.length];
-                for (int i = 0; i < selectedComicIndex.length; i++) {
-                    comicLoaned[i] = RS.getComicISBNwithIndex(selectedComicIndex[i]);
-                }
-                Rentee rentee = new Rentee(memberID, name, comicLoaned);
-                rentees.add(rentee);
-                 saveLoaned = comicLoaned[0];
-                for(int y = 1; y < comicLoaned.length; y++){
-                    saveLoaned += "#" + comicLoaned[y];
-                }
-                PrintWriter pw = new PrintWriter(new FileWriter("rentees.txt", true));
-                pw.println(memberID + ";" + name + ";" + saveLoaned);
-                pw.close();
+                JOptionPane.showMessageDialog(null,
+                        "Member ID already exist!!!",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
                     "Error!!!",

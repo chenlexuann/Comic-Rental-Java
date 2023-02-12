@@ -31,7 +31,7 @@ public class RentalSystem {
     public ArrayList<Rentee> getRentees() {
         return rentees;
     }
-    
+
     //returns the comic when user clicks next or return button
     public Comic getComic(int index) {
         return comicsList.get(index);
@@ -90,7 +90,7 @@ public class RentalSystem {
     public int getComicSize() {
         return comicsList.size();
     }
-    
+
     //method that returns the size of the rentees
     public int getRenteeSize() {
         return rentees.size();
@@ -103,8 +103,7 @@ public class RentalSystem {
     public void setRentees(ArrayList<Rentee> rentees) {
         this.rentees = rentees;
     }
-    
-    
+
     public Rentee[] saveRentees() {
         Rentee[] renteeSave = new Rentee[rentees.size()];
         for (int i = 0; i < rentees.size(); i++) {
@@ -122,9 +121,23 @@ public class RentalSystem {
                 + "\n\nTotal earning per day is $" + String.format("%.2f", totalRent) + ".";
 
     }
-    public boolean checkISBN(String ISBNNumber){
+
+    public boolean checkMemberID(String MemberID) {
         boolean truefalse = false;
-         for (int i = 0; i < comicsList.size(); i++) {
+        for (int i = 0; i < rentees.size(); i++) {
+            if (MemberID.equals(rentees.get(i).getMemberID())) {
+                truefalse = false;
+                break;
+            } else {
+                truefalse = true;
+            }
+        }
+        return truefalse;
+    }
+
+    public boolean checkISBN(String ISBNNumber) {
+        boolean truefalse = false;
+        for (int i = 0; i < comicsList.size(); i++) {
             if (ISBNNumber.equals(comicsList.get(i).getISBN13Number())) {
                 truefalse = false;
                 break;
@@ -132,19 +145,19 @@ public class RentalSystem {
                 truefalse = true;
             }
         }
-         return truefalse;
+        return truefalse;
     }
-        
-    public String[] getComicNames(){
+
+    public String[] getComicNames() {
         String[] comicNames = new String[comicsList.size()];
-        for(int i = 0; i < comicsList.size(); i++){
+        for (int i = 0; i < comicsList.size(); i++) {
             comicNames[i] = comicsList.get(i).getTitleName();
         }
         return comicNames;
     }
-    
-    public String getComicISBNwithIndex(int index){
+
+    public String getComicISBNwithIndex(int index) {
         return comicsList.get(index).getISBN13Number();
     }
-    
+
 }
