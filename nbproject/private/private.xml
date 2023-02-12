@@ -4,13 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/chenl/Documents/NetBeansProjects/JavaApplication1/src/javaapplication1/JPRG-CA2/rentees.txt</file>
-            <file>file:/C:/Users/chenl/Documents/NetBeansProjects/JavaApplication1/src/javaapplication1/JPRG-CA2/src/CA2/Comic.java</file>
-            <file>file:/C:/Users/chenl/Documents/NetBeansProjects/JavaApplication1/src/javaapplication1/JPRG-CA2/src/CA2/Manga.java</file>
             <file>file:/C:/Users/chenl/Documents/NetBeansProjects/JavaApplication1/src/javaapplication1/JPRG-CA2/comics.txt</file>
             <file>file:/C:/Users/chenl/Documents/NetBeansProjects/JavaApplication1/src/javaapplication1/JPRG-CA2/src/CA2/RentalReadWriteFromFile.java</file>
             <file>file:/C:/Users/chenl/Documents/NetBeansProjects/JavaApplication1/src/javaapplication1/JPRG-CA2/src/CA2/RentalSystem.java</file>
             <file>file:/C:/Users/chenl/Documents/NetBeansProjects/JavaApplication1/src/javaapplication1/JPRG-CA2/src/CA2/ComicRentalFrame.java</file>
-            <file>file:/C:/Users/chenl/Documents/NetBeansProjects/JavaApplication1/src/javaapplication1/JPRG-CA2/src/CA2/Rentee.java</file>
+            <file>file:/C:/Users/chenl/Documents/NetBeansProjects/JavaApplication1/src/javaapplication1/JPRG-CA2/src/CA2/Admin.java</file>
         </group>
     </open-files>
 </project-private>
