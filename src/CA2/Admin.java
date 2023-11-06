@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author chenl
+
+/* Class: DIT/FT/1B/02
+ * Admission Number: 2212562
+ * Name: Chen Lexuan
  */
 public class Admin extends javax.swing.JFrame {
 

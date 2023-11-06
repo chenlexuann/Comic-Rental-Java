@@ -19,7 +19,7 @@ public class Manga extends Comic implements Serializable {
     }
     public String AddInfo(){
         if(Language.equals("EN")){
-            return "This is a Manga translated to Engish";
+            return "This is a Manga translated to English";
         } else {
             return "This is a Manga in Japanese";
         }
